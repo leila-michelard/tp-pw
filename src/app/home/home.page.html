@@ -3,27 +3,28 @@
     <ion-title>
       Home
     </ion-title>
-    <ion-button color="primary">
+    <ion-button slot="end">
       Random
     </ion-button>
   </ion-toolbar>
-  <ion-searchbar>
+  <ion-searchbar placeholder="Search a movie" 
+    (ionChange)="getMovies($event.target.value)">
   </ion-searchbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      <ion-label>
-        Items
-      </ion-label>
+      <ion-title>
+        Movie list
+      </ion-title>
     </ion-list-header>
 
-    <ion-item>
-
+    <ion-item *ngIf="movies.length==0">
+      <ion-label>No Result</ion-label>
     </ion-item>
 
-    <ion-item *ngFor='let movie of movies'>
+    <ion-item *ngFor='let movie of movies' (click)="showDetails(movie)" route-direction="forward">
       {{movie.title}}
     </ion-item>
   </ion-list>
