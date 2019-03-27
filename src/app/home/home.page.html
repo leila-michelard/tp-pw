@@ -20,11 +20,11 @@
       </ion-title>
     </ion-list-header>
 
-    <ion-item *ngIf="movies.length==0">
+    <ion-item *ngIf="!(movies | async)?.length">
       <ion-label>No Result</ion-label>
     </ion-item>
 
-    <ion-item *ngFor='let movie of movies' (click)="showDetails(movie)" route-direction="forward">
+    <ion-item *ngFor='let movie of (movies | async)' (click)="showDetails(movie)">
       {{movie.title}}
     </ion-item>
   </ion-list>
